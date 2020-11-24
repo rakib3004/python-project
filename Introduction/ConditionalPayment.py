@@ -1,9 +1,10 @@
+#Calculate pay
 hrs = input("Enter Hours:")
 h = float(hrs)
-f=1.5
-if h<40 :
-    pay = h*f
-else :
-    f=10.50
-    pay = h*f
+f = input("Enter Pay Rate:")
+f = float(f)
+if h > 40:
+    pay = h * f + ((h - 40.00) * (f * .5))
+else:
+    pay = f * h
 print(pay)
