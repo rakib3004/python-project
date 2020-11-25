@@ -2,7 +2,7 @@
 
 largestNumber = -1
 itrator=1
-//for loop
+
 for theNumber in [14,51,32,87,190,255,145,22]:
     #check the numer is largestNumber or not
     if largestNumber<theNumber :
