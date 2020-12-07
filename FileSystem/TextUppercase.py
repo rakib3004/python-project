@@ -4,5 +4,4 @@ fh = open(fname)
 reading = fh.read()
 
 for ioOut in reading:
-    #ioIn = ioOut.rstrip()
-    print(ioOut.upper())
+    print(ioOut.upper(),end="")
