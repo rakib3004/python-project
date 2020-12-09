@@ -8,7 +8,5 @@ for iItem in file:
     for jItem in iText:
         iCountWords[jItem]=iCountWords.get(jItem,0)+1
 
-
-
 for iKey, iItem in iCountWords.items():
     print(iKey,iItem)
