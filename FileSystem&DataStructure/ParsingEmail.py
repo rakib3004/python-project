@@ -13,11 +13,11 @@ for iFile in fh:
 
 iPoint =1
 for iterIO in range(len(iList)):
-    if(iPoint==1):
+    if(iPoint== 1):
         print(iList[iterIO])
-        iPoint=2
+        iPoint= 2
     else:
         iPoint=1
 
 
-print("There were",int(count/2) , "lines in the file with From as the first word")
+print("There were", int(count/2), "lines in the file with From as the first word")
