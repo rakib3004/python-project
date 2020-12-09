@@ -12,8 +12,9 @@ def findPrime(x):
 
 primeNumbers=[]
 iRange =2020
-for i in iRange :
-    if(findPrime(i)==True): primeNumbers.append(i)
+#while i<=iRange :
+ #   if(findPrime(i)==True):
+  #      primeNumbers.append(i)
 
 print(primeNumbers)
 
