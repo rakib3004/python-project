@@ -26,4 +26,23 @@ for iString in iWordSet:
     word, defination = get_word_definition(iString)
     iDictionaries[word]=defination
 
-print(iDictionaries)
+
+while True :
+    iList = list(iDictionaries)
+    choiceList = []
+    for xTerm in range(4):
+        word,defination = get_def_and_pop(iList,iDictionaries)
+        choiceList.append(defination)
+        random.shuffle(choiceList)
+
+    print(word)
+    print('---Choose--the--right--answer---')
+    for inx,choice in enumerate(choiceList):
+        print(inx+1,choice)
+    choice = int(input('Enter 1,2,3 or 4 : 0 to exit\n'))
+    if choiceList[choice-1] == defination:
+         print("Correct\n")
+    elif choice==0:
+         exit(0)
+    else:
+        print("Incorrect")
