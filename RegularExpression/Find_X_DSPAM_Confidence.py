@@ -9,4 +9,4 @@ for iLoop in iFile:
     number = float(iData[0])
     numberList.append(number)
 
-print("MAximum",max(numberList))
+print("Maximum",max(numberList))
