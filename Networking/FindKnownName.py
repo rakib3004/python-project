@@ -27,7 +27,7 @@ def parsename(inputList):
             if sum == selectPosition:
                 iLink = str(jTags.get('href', None))
                 inputList.append(inputList)
-                inputList.append(pos)
+                inputList.append(str(pos))
                 getIO = parsename(inputList)
                 break
             else:
@@ -56,7 +56,7 @@ for jTags in iTags:
     if sum==selectPosition:
         iLink = str(jTags.get('href',None))
         inputList.append(inputList)
-        inputList.append(1)
+        inputList.append(str(1))
         inputList = parsename(inputList)
         break
     else:
