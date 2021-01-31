@@ -40,7 +40,7 @@ def game_build():
 
 
     #base
-    base_image = pygame.image.load('wall.png')
+    base_image = pygame.image.load('wall2.png')
     var_x=0
 
     #bird
@@ -104,6 +104,6 @@ def game_build():
     pygame.quit()
 
 
-if __name__ =="__main__":
-    game_build()
+
+game_build()
 
