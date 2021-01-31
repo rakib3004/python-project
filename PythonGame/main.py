@@ -36,21 +36,21 @@ def game_build():
     pygame.mixer.music.play()"""
 
     #background
-    bkg_image = pygame.image.load('resource\\background-night.png')
+    bkg_image = pygame.image.load('bg.jpg')
 
 
     #base
-    base_image = pygame.image.load('resource\\base.png')
+    base_image = pygame.image.load('wall.png')
     var_x=0
 
     #bird
-    bird_img = pygame.image.load('resource\\rebird-midflag.png')
+    bird_img = pygame.image.load('plane.png')
 
     bird_rect = bird_img.get_rect(center=(75, 512/2))
     g_force = 0.3
 
     #pipes
-    pipe_img = pygame.image.load('resource\\pipe-red.png')
+    pipe_img = pygame.image.load('pillar.png')
 
     list_of_pipe=[]
 
