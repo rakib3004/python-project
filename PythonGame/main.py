@@ -27,7 +27,7 @@ def collision(pipes,bird_rect):
 
 def game_build():
     pygame.init()
-    windows = pygame.display.set_mode((288,512))
+    window = pygame.display.set_mode((288,512))
 
     #music
     """pygame.mixer.init()
@@ -72,5 +72,38 @@ def game_build():
                     bird_new_pos-=8
 
             if event.type==TIMER:
-                random_pipe_height = [200,250,300,350,400]
+                random_pipe_height = [200, 250, 300, 350, 400]
+                pipes = pipe_img.get_rect(midtop=(290, random.choice(random_pipe_height)))
+                list_of_pipe.append(pipes)
+
+
+        #game basic
+        window.blit(bkg_image, (0, 0))
+
+        #collition detection
+        collision(list_of_pipe,bird_rect)
+
+        #pipe movement
+        pipe_movement(window,list_of_pipe,pipe_img)
+
+        #base movement
+        var_x-=1
+        base_movement(window,base_image,var_x)
+        if var_x<=-200:
+            var_x=0
+
+        #bird movement
+        bird_new_pos+=g_force
+        bird_rect.centerx+=bird_new_pos
+        bird_movement(window,bird_img,bird_rect)
+
+        #updating
+        clock.tick(60)
+        pygame.display.update()
+
+    pygame.quit()
+
+
+if __name__ =="__main__":
+    game_build()
 
