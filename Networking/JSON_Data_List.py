@@ -1,21 +1,218 @@
 import json
+import xml.etree.ElementTree as ET
+import urllib.request, urllib.parse, urllib.error
 
-data = '''[
-{"id ": "4101" ,
-  "rating" : "1401" , 
-  "ranking" : "154", 
-  "star" : '4"},
-{"id ": "4651" , 
- "rating" : "2484" ,
-  "ranking" : "93",
-   "star" :"7"}
-]'''
 
-neuralBioscope = json.loads(data)
-print("Number of Data :",len(neuralBioscope))
 
-for iData in neuralBioscope:
-    print('ID :', iData['id'])
-    print('RATING :', iData['rating'])
-    print('RANKING :', iData['ranking'])
-    print('STAR :', iData['star'])
+
+iWebText = '''{
+  "note":"This file contains the actual data for your assignment",
+  "comments":[
+    {
+      "name":"Seaan",
+      "count":100
+    },
+    {
+      "name":"Macsen",
+      "count":97
+    },
+    {
+      "name":"Kacey",
+      "count":96
+    },
+    {
+      "name":"Kaydn",
+      "count":92
+    },
+    {
+      "name":"Khelis",
+      "count":77
+    },
+    {
+      "name":"Rayane",
+      "count":73
+    },
+    {
+      "name":"Corey",
+      "count":73
+    },
+    {
+      "name":"Marcos",
+      "count":70
+    },
+    {
+      "name":"Mathuyan",
+      "count":70
+    },
+    {
+      "name":"Marni",
+      "count":70
+    },
+    {
+      "name":"Juan",
+      "count":69
+    },
+    {
+      "name":"Dearbhail",
+      "count":66
+    },
+    {
+      "name":"Dillon",
+      "count":64
+    },
+    {
+      "name":"Thirza",
+      "count":63
+    },
+    {
+      "name":"Ruan",
+      "count":60
+    },
+    {
+      "name":"Konnie",
+      "count":60
+    },
+    {
+      "name":"Keilan",
+      "count":58
+    },
+    {
+      "name":"Abhy",
+      "count":56
+    },
+    {
+      "name":"Murran",
+      "count":56
+    },
+    {
+      "name":"Aphra",
+      "count":54
+    },
+    {
+      "name":"Miriam",
+      "count":49
+    },
+    {
+      "name":"Jimmy",
+      "count":49
+    },
+    {
+      "name":"Ceiran",
+      "count":46
+    },
+    {
+      "name":"A",
+      "count":45
+    },
+    {
+      "name":"Igor",
+      "count":45
+    },
+    {
+      "name":"Casey",
+      "count":45
+    },
+    {
+      "name":"Tess",
+      "count":44
+    },
+    {
+      "name":"Amrinder",
+      "count":42
+    },
+    {
+      "name":"Viki",
+      "count":38
+    },
+    {
+      "name":"Darla",
+      "count":34
+    },
+    {
+      "name":"Aseel",
+      "count":32
+    },
+    {
+      "name":"Jesuseun",
+      "count":28
+    },
+    {
+      "name":"Praise",
+      "count":27
+    },
+    {
+      "name":"Matas",
+      "count":24
+    },
+    {
+      "name":"Yutong",
+      "count":23
+    },
+    {
+      "name":"Kedrick",
+      "count":22
+    },
+    {
+      "name":"Joseph",
+      "count":21
+    },
+    {
+      "name":"Leyna",
+      "count":18
+    },
+    {
+      "name":"Choco",
+      "count":15
+    },
+    {
+      "name":"Dora",
+      "count":14
+    },
+    {
+      "name":"Koral",
+      "count":14
+    },
+    {
+      "name":"Sandro",
+      "count":13
+    },
+    {
+      "name":"Jaydn",
+      "count":12
+    },
+    {
+      "name":"Odhran",
+      "count":9
+    },
+    {
+      "name":"Darya",
+      "count":8
+    },
+    {
+      "name":"Amani",
+      "count":8
+    },
+    {
+      "name":"Conley",
+      "count":7
+    },
+    {
+      "name":"Lachlainn",
+      "count":6
+    },
+    {
+      "name":"Raza",
+      "count":4
+    },
+    {
+      "name":"Jaskaran",
+      "count":2
+    }
+  ]
+}'''
+
+data = json.loads(iWebText)
+print("Number of Data :", len(data))
+
+for iData in data:
+    print('Name :', iData["name"])
