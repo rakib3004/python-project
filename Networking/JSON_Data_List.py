@@ -6,7 +6,6 @@ import urllib.request, urllib.parse, urllib.error
 
 
 iWebText = '''{
-  "note":"This file contains the actual data for your assignment",
   "comments":[
     {
       "name":"Seaan",
@@ -211,8 +210,11 @@ iWebText = '''{
   ]
 }'''
 
-data = json.loads(iWebText)
-print("Number of Data :", len(data))
+iWebText2 = urllib.request.urlopen('http://py4e-data.dr-chuck.net/comments_1081153.json')
 
-for iData in data:
-    print('Name :', iData["name"])
+data = json.loads(iWebText)
+sum=0
+for iData in data["comments"]:
+    sum=sum+int(iData["count"])
+
+print(sum)
