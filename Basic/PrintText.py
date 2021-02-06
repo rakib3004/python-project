@@ -1,0 +1,7 @@
+print('**********************************')
+print('*                                *')
+print('*          BUIC                  *')
+print('*        Computing               *')
+print('*       Assignment 1             *')
+print('*                                *')
+print('**********************************')
