@@ -19,7 +19,11 @@ soup = BeautifulSoup(html, 'html.parser')
 tags = soup('a')
 iter=1
 for tag in tags:
-    print('position',iter,':',tag.get('href', None))
+
     iter=iter+1
-    if(iter==20) :
+    if(iter==18) :
+        print('position', iter, ':', tag.get('href', None))
         break
+
+
+#http://py4e-data.dr-chuck.net/known_by_Sheignneth.html
