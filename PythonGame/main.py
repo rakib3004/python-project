@@ -17,13 +17,25 @@ def pipe_movement(window,pipes,pipe_img):
 def collision(pipes,plane_rect):
     for pipe in pipes:
         if pipe.colliderect(plane_rect):
-            print('collected')
+            try:
+                pygame.quit()
+            except:
+                print('collected')
 
-    if plane_rect.bottom<=-10:
-        print('exceeded upper limit')
+
+    if plane_rect.bottom<=0:
+        try:
+            pygame.quit()
+        except:
+            print('exceeded upper limit')
+
 
     if plane_rect.bottom>= 512-75:
-        print('exceeded lower limit')
+        try:
+            pygame.quit()
+        except:
+            print('exceeded lower limit')
+
 
 def game_build():
     pygame.init()
