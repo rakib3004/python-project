@@ -2,14 +2,13 @@ import pygame, random
 
 def quiteGame():
 
-    scoreFile = open('BestScore')
+    scoreFile = open("BestScore")
     bestScoreFile = scoreFile.read()
-
-    for line in bestScoreFile:
-        iPos = line.endswith(':')
-        iScore = int(line[iPos+1,iPos+4])
+    iScore = max(score,int(bestScoreFile))
     print('Your Score is :', score)
     print('Highest Score is :', iScore)
+    scoreFile.write(str(iScore))
+    scoreFile.close()
     pygame.quit()
 
 def base_movement(window, base_img, var_x):
@@ -58,22 +57,22 @@ def game_build():
     pygame.mixer.music.play()"""
 
     #background
-    bkg_image = pygame.image.load('bg.jpg')
+    bkg_image = pygame.image.load('../bg.jpg')
 
 
     #base
-    base_image = pygame.image.load('wall.jpg')
+    base_image = pygame.image.load('../wall.jpg')
     var_x=0
 
     #plane
-    plane_img = pygame.image.load('plane.png')
+    plane_img = pygame.image.load('../plane.png')
 
     plane_rect = plane_img.get_rect(center=(288/2, 512/2))
     g_force = 0.3
     plane_new_pos = 0
 
     #pipes
-    pipe_img = pygame.image.load('vertical-line.png')
+    pipe_img = pygame.image.load('../vertical-line.png')
 
     list_of_pipe=[]
 
