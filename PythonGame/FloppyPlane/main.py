@@ -1,7 +1,15 @@
 import pygame, random
 
 def quiteGame():
+
+    scoreFile = open('BestScore')
+    bestScoreFile = scoreFile.read()
+
+    for line in bestScoreFile:
+        iPos = line.endswith(':')
+        iScore = int(line[iPos+1,iPos+4])
     print('Your Score is :', score)
+    print('Highest Score is :', iScore)
     pygame.quit()
 
 def base_movement(window, base_img, var_x):
