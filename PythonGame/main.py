@@ -4,8 +4,8 @@ def base_movement(window, base_img, var_x):
     #second window
     window.blit(base_img,(var_x+200,512-75))
 
-def bird_movement(window,bird_img,bird_rect):
-    window.blit(bird_img,bird_rect)
+def plane_movement(window,plane_img,plane_rect):
+    window.blit(plane_img,plane_rect)
 
 def pipe_movement(window,pipes,pipe_img):
     for pipe in pipes:
@@ -14,21 +14,21 @@ def pipe_movement(window,pipes,pipe_img):
     for pipe in pipes:
         window.blit(pipe_img,pipe)
 
-def collision(pipes,bird_rect):
+def collision(pipes,plane_rect):
     for pipe in pipes:
-        if pipe.colliderect(bird_rect):
+        if pipe.colliderect(plane_rect):
             print('collected')
 
-    if bird_rect.bottom<=-10:
+    if plane_rect.bottom<=-10:
         print('exceeded upper limit')
 
-    if bird_rect.bottom>=512-75:
+    if plane_rect.bottom>=512-75:
         print('exceeded lower limit')
 
 def game_build():
     pygame.init()
     window = pygame.display.set_mode((288,512))
-
+    plane_new_pos = 0
     #music
     """pygame.mixer.init()
     pygame.mixer.music.load("resource\\soundtrack.mp3")
@@ -40,13 +40,13 @@ def game_build():
 
 
     #base
-    base_image = pygame.image.load('wall2.jpg')
+    base_image = pygame.image.load('wall.jpg')
     var_x=0
 
-    #bird
-    bird_img = pygame.image.load('plane.png')
+    #plane
+    plane_img = pygame.image.load('plane.png')
 
-    bird_rect = bird_img.get_rect(center=(75, 512/2))
+    plane_rect = plane_img.get_rect(center=(75, 512/2))
     g_force = 0.3
 
     #pipes
@@ -60,16 +60,17 @@ def game_build():
     #main loop
     clock = pygame.time.Clock()
     running = True
-    bird_new_pos = 0
+
     while running:
         #event loop
         for event in pygame.event.get():
             if event.type== pygame.QUIT:
                 running = False
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
-                    bird_new_pos = 0
-                    bird_new_pos-=8
+                    plane_new_pos =0
+                    plane_new_pos-=8
 
             if event.type==TIMER:
                 random_pipe_height = [200, 250, 300, 350, 400]
@@ -81,7 +82,7 @@ def game_build():
         window.blit(bkg_image, (0, 0))
 
         #collition detection
-        collision(list_of_pipe,bird_rect)
+        collision(list_of_pipe,plane_rect)
 
         #pipe movement
         pipe_movement(window,list_of_pipe,pipe_img)
@@ -92,10 +93,10 @@ def game_build():
         if var_x<=-200:
             var_x=0
 
-        #bird movement
-        bird_new_pos+=g_force
-        bird_rect.centerx+=bird_new_pos
-        bird_movement(window,bird_img,bird_rect)
+        #plane movement
+        plane_new_pos+=g_force
+        plane_rect.centerx+=plane_new_pos
+        plane_movement(window,plane_img,plane_rect)
 
         #updating
         clock.tick(60)
