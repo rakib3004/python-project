@@ -2,7 +2,7 @@ import pygame, random
 def base_movement(window, base_img, var_x):
     window.blit(base_img,(var_x,512-75))
     #second window
-    window.blit(base_img,(var_x+200,512-75))
+    window.blit(base_img,(var_x+288,512-75))
 
 def plane_movement(window,plane_img,plane_rect):
     window.blit(plane_img,plane_rect)
@@ -22,13 +22,13 @@ def collision(pipes,plane_rect):
     if plane_rect.bottom<=-10:
         print('exceeded upper limit')
 
-    if plane_rect.bottom>=512-75:
+    if plane_rect.bottom>= 512-75:
         print('exceeded lower limit')
 
 def game_build():
     pygame.init()
-    window = pygame.display.set_mode((288,512))
-    plane_new_pos = 0
+    window = pygame.display.set_mode((288, 512))
+
     #music
     """pygame.mixer.init()
     pygame.mixer.music.load("resource\\soundtrack.mp3")
@@ -46,8 +46,9 @@ def game_build():
     #plane
     plane_img = pygame.image.load('plane.png')
 
-    plane_rect = plane_img.get_rect(center=(75, 512/2))
+    plane_rect = plane_img.get_rect(center=(288/2, 512/2))
     g_force = 0.3
+    plane_new_pos = 0
 
     #pipes
     pipe_img = pygame.image.load('vertical-line.png')
@@ -90,16 +91,16 @@ def game_build():
         #base movement
         var_x-=1
         base_movement(window,base_image,var_x)
-        if var_x<=-200:
+        if var_x<=-288:
             var_x=0
 
         #plane movement
         plane_new_pos+=g_force
-        plane_rect.centerx+=plane_new_pos
+        plane_rect.centery+=plane_new_pos
         plane_movement(window,plane_img,plane_rect)
 
         #updating
-        clock.tick(60)
+        clock.tick(50)
         pygame.display.update()
 
     pygame.quit()
