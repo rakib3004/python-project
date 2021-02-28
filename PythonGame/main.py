@@ -1,4 +1,9 @@
 import pygame, random
+
+def quiteGame():
+    print('Your Score is :', score)
+    pygame.quit()
+
 def base_movement(window, base_img, var_x):
     window.blit(base_img,(var_x,512-75))
     #second window
@@ -17,27 +22,24 @@ def pipe_movement(window,pipes,pipe_img):
 def collision(pipes,plane_rect):
     for pipe in pipes:
         if pipe.colliderect(plane_rect):
-            try:
-                pygame.quit()
-            except:
-                print('collected')
+            print('collusion')
+            quiteGame()
 
 
     if plane_rect.bottom<=0:
-        try:
-            pygame.quit()
-        except:
-            print('exceeded upper limit')
+        print('exceeded upper limit')
+        quiteGame()
+
 
 
     if plane_rect.bottom>= 512-75:
-        try:
-            pygame.quit()
-        except:
-            print('exceeded lower limit')
+        print('exceeded lower limit')
+        quiteGame()
 
 
 def game_build():
+    global score
+    score=0
     pygame.init()
     window = pygame.display.set_mode((288, 512))
 
@@ -100,6 +102,8 @@ def game_build():
         #pipe movement
         pipe_movement(window,list_of_pipe,pipe_img)
 
+        score=score+1
+
         #base movement
         var_x-=1
         base_movement(window,base_image,var_x)
@@ -114,8 +118,7 @@ def game_build():
         #updating
         clock.tick(50)
         pygame.display.update()
-
-    pygame.quit()
+    quiteGame()
 
 
 
