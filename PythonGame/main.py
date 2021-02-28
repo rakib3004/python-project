@@ -9,7 +9,7 @@ def bird_movement(window,bird_img,bird_rect):
 
 def pipe_movement(window,pipes,pipe_img):
     for pipe in pipes:
-        pipe.conterx -=5
+        pipe.centerx -= 5
 
     for pipe in pipes:
         window.blit(pipe_img,pipe)
@@ -40,7 +40,7 @@ def game_build():
 
 
     #base
-    base_image = pygame.image.load('wall2.png')
+    base_image = pygame.image.load('wall2.jpg')
     var_x=0
 
     #bird
@@ -50,7 +50,7 @@ def game_build():
     g_force = 0.3
 
     #pipes
-    pipe_img = pygame.image.load('pillar.png')
+    pipe_img = pygame.image.load('vertical-line.png')
 
     list_of_pipe=[]
 
@@ -60,7 +60,7 @@ def game_build():
     #main loop
     clock = pygame.time.Clock()
     running = True
-
+    bird_new_pos = 0
     while running:
         #event loop
         for event in pygame.event.get():
