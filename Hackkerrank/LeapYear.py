@@ -10,8 +10,6 @@ def is_leap(year):
     else:
         leap=False
 
-
-
     # Write your logic here
 
     return leap
