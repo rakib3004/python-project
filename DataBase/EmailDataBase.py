@@ -16,7 +16,7 @@ for line in fh:
     pieces = line.split()
     org = pieces[1]
     parts = org.split('@')
-    org=[1]
+    org=parts[1]
     cur.execute('SELECT count FROM Counts WHERE org = ? ', (org,))
     row = cur.fetchone()
     if row is None:
