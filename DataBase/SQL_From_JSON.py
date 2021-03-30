@@ -42,7 +42,7 @@ for entry in json_data:
     title = entry[1]
     role = entry[2]
 
-    print(name, title)
+    print(name, title,role)
 
     cur.execute('''INSERT OR IGNORE INTO User (name)
         VALUES ( ? )''', (name, ))
