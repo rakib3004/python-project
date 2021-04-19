@@ -4,4 +4,7 @@ if __name__ == '__main__':
     a = list(arr)
     a.sort(reverse=True)
     k=1
-    while(a[0]==a[k])
+    while(a[0]==a[k]):
+        k=k+1
+
+    print(a[k])
