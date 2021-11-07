@@ -1,6 +1,7 @@
 import socket
 import  threading
 
+HEADER= 64
 PORT = 5050
 SERVER = socket.gethostbyname(socket.gethostname())
 
@@ -10,7 +11,10 @@ server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind(ADDR)
 
 def handle_client(conn, addr):
-    print()
+    print(f"[NEW CONNECTION] {addr} connected.")
+    connected = True
+    while connected:
+        msg_length = conn.recv(HEADER)
 
 def start():
     server.listen()
