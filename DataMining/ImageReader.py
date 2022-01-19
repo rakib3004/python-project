@@ -1,37 +1,55 @@
 from PIL import Image
+import glob
 
-im = Image.open('0000.jpg') # Can be many different formats.
-maskIm  = Image.open('0000.bmp') # Can be many different formats.
+imageFile = glob.glob("*9.jpg")
+maskImageFile = glob.glob("*9.bmp")
 
-imageLoader = im.load()
-maskImageLoader = maskIm.load()
-print(im.size)  # Get the width and hight of the image for iterating over
-
-height = maskIm.size[0] # Get the width and hight of the image for iterating over
-width = maskIm.size[1]  # Get the width and hight of the image for iterating over
-
+imageFile.sort()
+maskImageFile.sort()
+skinCount=0
+nonSkinCount=0
 skin=[[[0]*256]*256]*256
 nonSkin=[[[0]*256]*256]*256
 trainedData=[[[0]*256]*256]*256
+probability=[[[0]*256]*256]*256
+nonProbability=[[[0]*256]*256]*256
+threshHold=[[[0]*256]*256]*256
 
-skinCount=0
-nonSkinCount=0
+for iterator in range(len(imageFile)):
+
+    im = Image.open(imageFile[iterator]) # Can be many different formats.
+    maskIm  = Image.open(maskImageFile[iterator]) # Can be many different formats.
+
+    imageLoader = im.load()
+    maskImageLoader = maskIm.load()
+    height = maskIm.size[0] # Get the width and hight of the image for iterating over
+    width = maskIm.size[1]  # Get the width and hight of the image for iterating over
+
+    
 
 
-for i in range(height):
-    for j in range(width): 
-        print(maskImageLoader[i,j],end="compare to ")
-        print(maskImageLoader[i,j])
-        if(imageLoader[i,j][0]<255&imageLoader[i,j][1]<255&imageLoader[i,j][2]<255):
-            print(imageLoader[i,j])
-            skin[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]+=1
-            skinCount+=1
-        else:
-            print(imageLoader[i,j])
-            nonSkin[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]+=1
-            nonSkinCount+=1
 
-        print("Skin Count: ",skinCount, "Non Skin Count: ", nonSkinCount)     
+    for i in range(height):
+        for j in range(width): 
+            #print(maskImageLoader[i,j],end="compare to ")
+            #print(maskImageLoader[i,j])
+            if(imageLoader[i,j][0]<255&imageLoader[i,j][1]<255&imageLoader[i,j][2]<255):
+                #print(imageLoader[i,j])
+                skin[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]+=1
+                skinCount+=1
+            else:
+                #print(imageLoader[i,j])
+                nonSkin[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]+=1
+                nonSkinCount+=1
+
+    print("Image: ",iterator,"Skin Count: ",skinCount, "Non Skin Count: ", nonSkinCount)     
+
+    for i in range(height):
+        for j in range(width): 
+            probability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]= skin[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]/(skinCount)
+            nonProbability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]= nonSkin[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]/(nonSkinCount)
+            threshHold[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]=probability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]/nonProbability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]
+
 
 
 for i in range(256):
@@ -46,9 +64,34 @@ for i in range(256):
             else:
                 trainedData[i][j][k]= nonSkin[i][j][k] and skin[i][j][k]/nonSkin[i][j][k]
 
-for i in range(256):
-    for j in range(256):
-        for k in range (256):
-            print((i,j,k),float(trainedData[i][j][k]))
 
 
+
+testingImage = Image.new('testingImage.jpg')
+o_img = Image.new(mode="RGB", size=testingImage.size)
+imageLoader_map = o_img.load()
+# o_img.show()
+
+for imageLoader in testingImage.getdata():
+    probability[imageLoader[0]][imageLoader[1]][imageLoader[2]]= skin[imageLoader[0]][imageLoader[1]][imageLoader[2]]/skinCount
+        
+
+    # print(proSkin[imageLoader[0]][imageLoader[1]][imageLoader[2]])
+
+for imageLoader in testingImage.getdata():
+    nonProbability[imageLoader[0]][imageLoader[1]][imageLoader[2]]= nonSkin[imageLoader[0]][imageLoader[1]][imageLoader[2]]/nonSkinCount
+
+
+for x in range (testingImage.size[0]):
+    for y in range (testingImage.size[1]):
+        pix = testingImage.getimageLoader((x,y))
+        if(probability[pix[0]][pix[1]][pix[2]]<=threshHold[pix[0]][pix[1]][pix[2]]):
+            imageLoader_map[x,y]=0,0,0
+        else:
+            imageLoader_map[x,y]= 255,255,255
+# print(cnt)
+
+o_img.show()
+
+#for tImage in testingImage:
+    #tImage
