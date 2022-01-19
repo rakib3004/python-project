@@ -1,8 +1,8 @@
 from PIL import Image
 import glob
 
-imageFile = glob.glob("*9.jpg")
-maskImageFile = glob.glob("*9.bmp")
+imageFile = glob.glob("*91.jpg")
+maskImageFile = glob.glob("*91.bmp")
 
 imageFile.sort()
 maskImageFile.sort()
@@ -47,9 +47,13 @@ for iterator in range(len(imageFile)):
     for i in range(height):
         for j in range(width): 
             probability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]= skin[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]/(skinCount)
+    for i in range(height):
+        for j in range(width): 
             nonProbability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]= nonSkin[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]/(nonSkinCount)
-            threshHold[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]=probability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]/nonProbability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]
-
+            if(nonProbability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]!=0):
+                threshHold[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]+=probability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]/nonProbability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]
+            else:
+                threshHold[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]=1/len(imageFile)
 
 
 for i in range(256):
@@ -65,9 +69,20 @@ for i in range(256):
                 trainedData[i][j][k]= nonSkin[i][j][k] and skin[i][j][k]/nonSkin[i][j][k]
 
 
-
-
+skin2=[[[0]*256]*256]*256
+nonSkin2=[[[0]*256]*256]*256
+probability2=[[[0]*256]*256]*256
+nonProbability2=[[[0]*256]*256]*256
 testingImage = Image.new('testingImage.jpg')
+
+for pixel in testingImage.getdata():
+    if pixel[0]<200 and pixel[1]<200 and pixel[2]<200:
+        cnt1[pixel[0]][pixel[1]][pixel[2]]+=1
+        totSkin1+=1
+    else:
+        nskin1[pixel[0]][pixel[1]][pixel[2]]+=1
+        totNon1+=1
+
 o_img = Image.new(mode="RGB", size=testingImage.size)
 imageLoader_map = o_img.load()
 # o_img.show()
