@@ -33,7 +33,7 @@ for iterator in range(len(imageFile)):
         for j in range(width): 
             #print(maskImageLoader[i,j],end="compare to ")
             #print(maskImageLoader[i,j])
-            if(imageLoader[i,j][0]<255&imageLoader[i,j][1]<255&imageLoader[i,j][2]<255):
+            if(imageLoader[i,j][0]<200&imageLoader[i,j][1]<200&imageLoader[i,j][2]<200):
                 #print(imageLoader[i,j])
                 skin[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]+=1
                 skinCount+=1
@@ -92,19 +92,19 @@ imageLoader_map = o_img.load()
 # o_img.show()
 
 for imageLoader in testingImage.getdata():
-    probability[imageLoader[0]][imageLoader[1]][imageLoader[2]]= skin[imageLoader[0]][imageLoader[1]][imageLoader[2]]/skinCount
+    probability2[imageLoader[0]][imageLoader[1]][imageLoader[2]]= skin2[imageLoader[0]][imageLoader[1]][imageLoader[2]]/skin2Count
         
 
     # print(proSkin[imageLoader[0]][imageLoader[1]][imageLoader[2]])
 
 for imageLoader in testingImage.getdata():
-    nonProbability[imageLoader[0]][imageLoader[1]][imageLoader[2]]= nonSkin[imageLoader[0]][imageLoader[1]][imageLoader[2]]/nonSkinCount
+    nonProbability2[imageLoader[0]][imageLoader[1]][imageLoader[2]]= nonSkin2[imageLoader[0]][imageLoader[1]][imageLoader[2]]/nonSkin2Count
 
 
 for x in range (testingImage.size[0]):
     for y in range (testingImage.size[1]):
-        pix = testingImage.getimageLoader((x,y))
-        if(probability[pix[0]][pix[1]][pix[2]]<=threshHold[pix[0]][pix[1]][pix[2]]):
+        pix = testingImage.getpixel((x,y))
+        if(probability2[pix[0]][pix[1]][pix[2]]<=threshHold[pix[0]][pix[1]][pix[2]]):
             imageLoader_map[x,y]=0,0,0
         else:
             imageLoader_map[x,y]= 255,255,255

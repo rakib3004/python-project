@@ -4,7 +4,7 @@ import os
 from pathlib import Path
  
 tc=NP.zeros([256,256,256])
-directory= "D:\DBMS2\Mask"
+directory= "Mining"
 files= Path(directory).glob('*')
 cntfile= 10
 # for im in os.listdir(directory):
@@ -51,7 +51,7 @@ proNSkin1=NP.zeros([256,256,256])
 totSkin1= 0
 totNon1= 0
  
-im1= Image.open('0219.jpg')
+im1= Image.open('0186.jpg')
 wid,hig= im1.size
 # print(wid)
 # print(hig)
