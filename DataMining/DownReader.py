@@ -51,7 +51,7 @@ proNSkin1=NP.zeros([256,256,256])
 totSkin1= 0
 totNon1= 0
  
-im1= Image.open('0001.jpg')
+im1= Image.open('0219.jpg')
 wid,hig= im1.size
 # print(wid)
 # print(hig)

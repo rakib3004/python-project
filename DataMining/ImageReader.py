@@ -71,17 +71,21 @@ for i in range(256):
 
 skin2=[[[0]*256]*256]*256
 nonSkin2=[[[0]*256]*256]*256
+skin2Count=0
+nonSkin2Count=0
 probability2=[[[0]*256]*256]*256
 nonProbability2=[[[0]*256]*256]*256
-testingImage = Image.new('testingImage.jpg')
+
+
+testingImage = Image.open('out.jpg')
 
 for pixel in testingImage.getdata():
     if pixel[0]<200 and pixel[1]<200 and pixel[2]<200:
-        cnt1[pixel[0]][pixel[1]][pixel[2]]+=1
-        totSkin1+=1
+        skin2[pixel[0]][pixel[1]][pixel[2]]+=1
+        skin2Count+=1
     else:
-        nskin1[pixel[0]][pixel[1]][pixel[2]]+=1
-        totNon1+=1
+        nonSkin2[pixel[0]][pixel[1]][pixel[2]]+=1
+        nonSkin2Count+=1
 
 o_img = Image.new(mode="RGB", size=testingImage.size)
 imageLoader_map = o_img.load()
