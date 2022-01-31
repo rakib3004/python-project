@@ -1,8 +1,8 @@
 from PIL import Image
 import glob
 
-imageFile = glob.glob("*91.jpg")
-maskImageFile = glob.glob("*91.bmp")
+imageFile = glob.glob("*.jpg")
+maskImageFile = glob.glob("*.bmp")
 
 imageFile.sort()
 maskImageFile.sort()
@@ -15,7 +15,7 @@ probability=[[[0]*256]*256]*256
 nonProbability=[[[0]*256]*256]*256
 threshHold=[[[0]*256]*256]*256
 
-for iterator in range(len(imageFile)):
+for iterator in range(len(imageFile)-1):
 
     im = Image.open(imageFile[iterator]) # Can be many different formats.
     maskIm  = Image.open(maskImageFile[iterator]) # Can be many different formats.
@@ -28,7 +28,7 @@ for iterator in range(len(imageFile)):
     
 
 
-
+    # [get every pixel in height X width]
     for i in range(height):
         for j in range(width): 
             #print(maskImageLoader[i,j],end="compare to ")
@@ -42,18 +42,22 @@ for iterator in range(len(imageFile)):
                 nonSkin[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]+=1
                 nonSkinCount+=1
 
-    print("Image: ",iterator,"Skin Count: ",skinCount, "Non Skin Count: ", nonSkinCount)     
+    print("Image: ",iterator,"Skin Count: ",skinCount, "Non Skin Count: ", nonSkinCount)
+    pointer=0
 
     for i in range(height):
         for j in range(width): 
-            probability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]= skin[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]/(skinCount)
+            probability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]= skinCount and skin[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]/(skinCount)
     for i in range(height):
         for j in range(width): 
             nonProbability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]= nonSkin[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]/(nonSkinCount)
             if(nonProbability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]!=0):
-                threshHold[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]+=probability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]/nonProbability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]
+                threshHold[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]=probability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]/nonProbability[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]
+                #threshHold[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]=0.45
             else:
-                threshHold[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]=1/len(imageFile)
+                pointer=pointer+1
+                print("Exception",pointer)
+                threshHold[imageLoader[i,j][0]][imageLoader[i,j][1]][imageLoader[i,j][2]]=100
 
 
 for i in range(256):
@@ -77,7 +81,7 @@ probability2=[[[0]*256]*256]*256
 nonProbability2=[[[0]*256]*256]*256
 
 
-testingImage = Image.open('out.jpg')
+testingImage = Image.open('Testing/Mash.jpg')
 
 for pixel in testingImage.getdata():
     if pixel[0]<200 and pixel[1]<200 and pixel[2]<200:
@@ -104,7 +108,7 @@ for imageLoader in testingImage.getdata():
 for x in range (testingImage.size[0]):
     for y in range (testingImage.size[1]):
         pix = testingImage.getpixel((x,y))
-        if(probability2[pix[0]][pix[1]][pix[2]]<=threshHold[pix[0]][pix[1]][pix[2]]):
+        if(threshHold[pix[0]][pix[1]][pix[2]]<0.3):
             imageLoader_map[x,y]=0,0,0
         else:
             imageLoader_map[x,y]= 255,255,255
