@@ -8,3 +8,20 @@ class Student:
         self.mobile = mobile
         self.gender = gender
         self.dictrict = dictrict
+
+
+studentDataBase = []
+
+
+studentDataBase.append(Student('Mehedi','Hasan','01','Physics','mehedi-hasan145@gmail.com','01931546247','Male','Norail'))
+studentDataBase.append(Student('Mehedi','Hasan','01','Physics','mehedi-hasan145@gmail.com','01931546247','Male','Norail'))
+studentDataBase.append(Student('Mehedi','Hasan','01','Physics','mehedi-hasan145@gmail.com','01931546247','Male','Norail'))
+studentDataBase.append(Student('Mehedi','Hasan','01','Physics','mehedi-hasan145@gmail.com','01931546247','Male','Norail'))
+studentDataBase.append(Student('Mehedi','Hasan','01','Physics','mehedi-hasan145@gmail.com','01931546247','Male','Norail'))
+studentDataBase.append(Student('Mehedi','Hasan','01','Physics','mehedi-hasan145@gmail.com','01931546247','Male','Norail'))
+studentDataBase.append(Student('Mehedi','Hasan','01','Physics','mehedi-hasan145@gmail.com','01931546247','Male','Norail'))
+studentDataBase.append(Student('Mehedi','Hasan','01','Physics','mehedi-hasan145@gmail.com','01931546247','Male','Norail'))
+studentDataBase.append(Student('Mehedi','Hasan','01','Physics','mehedi-hasan145@gmail.com','01931546247','Male','Norail'))
+studentDataBase.append(Student('Mehedi','Hasan','01','Physics','mehedi-hasan145@gmail.com','01931546247','Male','Norail'))
+studentDataBase.append(Student('Mehedi','Hasan','01','Physics','mehedi-hasan145@gmail.com','01931546247','Male','Norail'))
+
