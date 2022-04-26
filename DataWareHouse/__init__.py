@@ -23,7 +23,17 @@ def java():
 
 
 
-
+def cPlusPlus():
+    cPlusPlusFile = open("C++.txt", "w")
+    cPlusPlusDatabase = "Student students[100]"
+    cPlusPlusFile.write(cPlusPlusDatabase + "\n")
+    objectNumber = 0
+    for studentDataBase in studentDataBases:
+        cPlusPlusDatabase = 'students[' + str(
+            objectNumber) + ']("' + studentDataBase.firstName + '", "' + studentDataBase.lastName + '", "' + studentDataBase.roll + '", "' + studentDataBase.department + '", "' + studentDataBase.email + '", "' + studentDataBase.mobile + '", "' + studentDataBase.gender + '", "' + studentDataBase.district + "')"
+        cPlusPlusFile.write(cPlusPlusDatabase + "\n")
+        objectNumber = objectNumber + 1
+    cPlusPlusFile.close()
 
 class Student:
     def __init__(self, firstName, lastName, roll, department, email, mobile, gender, district):
@@ -54,3 +64,4 @@ studentDataBases.append(Student('Shahdat', 'Khan', '02', 'Zoology', 'shahdat-kha
 
 python()
 java()
+cPlusPlus()
