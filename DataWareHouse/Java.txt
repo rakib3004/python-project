@@ -1,0 +1,12 @@
+Student [] students = new Student[100]
+students[0] =new Student("Mehedi", "Hasan", "01", "Physics", "mehedi-hasan01@gmail.com", "01931546247", "Male", "Faridpur')
+students[1] =new Student("Afsana", "Mimi", "42", "Chemistry", "afsana-mimi42@gmail.com", "01754862485", "Female", "Dhaka')
+students[2] =new Student("Sakib", "Rahman", "07", "Math", "sakib-rahman07@gmail.com", "01945778354", "Male", "Khulna')
+students[3] =new Student("Sazzad", "Hossain", "24", "Math", "sazzat-hossain24@gmail.com", "01672786858", "Male", "Rajbari')
+students[4] =new Student("Topu", "Hasan", "13", "Chemistry", "topu-hasan13@gmail.com", "01757835427", "Male", "Dinajpur')
+students[5] =new Student("Mohammad", "Jakir", "21", "Zoology", "mohammad-jakir21@gmail.com", "018754757293", "Male", "Rajshahi')
+students[6] =new Student("Rahat", "Islam", "17", "English", "rahat-islam17@gmail.com", "01575555678", "Male", "Tangail')
+students[7] =new Student("Nusrat", "Fatema", "08", "Chemistry", "nusrat-fatema08@gmail.com", "01975836895", "Female", "Coxs Bazar')
+students[8] =new Student("Abid", "Mahmud", "14", "English", "abid-mahmud14@gmail.com", "01687329835", "Male", "Norail')
+students[9] =new Student("Syeda", "Taslim", "11", "Physics", "syeda-taslim11@gmail.com", "01827435668", "Female", "Kishoreganj')
+students[10] =new Student("Shahdat", "Khan", "02", "Zoology", "shahdat-khan02@gmail.com", "01576390500", "Male", "Mymensingh')
