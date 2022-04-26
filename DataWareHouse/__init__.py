@@ -12,11 +12,11 @@ def python():
 
 def java():
     javaFile = open("Java.txt","w")
-    javaDatabase = "Student [] students = new Student[100]"
+    javaDatabase = "Student [] students = new Student[100];"
     javaFile.write(javaDatabase+"\n")
     objectNumber = 0
     for studentDataBase in studentDataBases:
-        javaDatabase = 'students['+str(objectNumber)+'] =new Student("' + studentDataBase.firstName+'", "' + studentDataBase.lastName+'", "' + studentDataBase.roll+'", "' + studentDataBase.department+'", "' + studentDataBase.email+'", "' + studentDataBase.mobile+'", "' + studentDataBase.gender+'", "' + studentDataBase.district+"')"
+        javaDatabase = 'students['+str(objectNumber)+'] =new Student("' + studentDataBase.firstName+'", "' + studentDataBase.lastName+'", "' + studentDataBase.roll+'", "' + studentDataBase.department+'", "' + studentDataBase.email+'", "' + studentDataBase.mobile+'", "' + studentDataBase.gender+'", "' + studentDataBase.district+ '");'
         javaFile.write(javaDatabase+"\n")
         objectNumber = objectNumber+1
     javaFile.close()
@@ -25,12 +25,12 @@ def java():
 
 def cPlusPlus():
     cPlusPlusFile = open("C++.txt", "w")
-    cPlusPlusDatabase = "Student students[100]"
+    cPlusPlusDatabase = "Student students[100];"
     cPlusPlusFile.write(cPlusPlusDatabase + "\n")
     objectNumber = 0
     for studentDataBase in studentDataBases:
         cPlusPlusDatabase = 'students[' + str(
-            objectNumber) + ']("' + studentDataBase.firstName + '", "' + studentDataBase.lastName + '", "' + studentDataBase.roll + '", "' + studentDataBase.department + '", "' + studentDataBase.email + '", "' + studentDataBase.mobile + '", "' + studentDataBase.gender + '", "' + studentDataBase.district + "')"
+            objectNumber) + ']("' + studentDataBase.firstName + '", "' + studentDataBase.lastName + '", "' + studentDataBase.roll + '", "' + studentDataBase.department + '", "' + studentDataBase.email + '", "' + studentDataBase.mobile + '", "' + studentDataBase.gender + '", "' + studentDataBase.district + '");'
         cPlusPlusFile.write(cPlusPlusDatabase + "\n")
         objectNumber = objectNumber + 1
     cPlusPlusFile.close()
